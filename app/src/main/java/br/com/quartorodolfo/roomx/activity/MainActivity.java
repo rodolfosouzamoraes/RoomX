@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private String codigoLamp;
     private TextView txtTemperatura;
     private char[] vet;
+    private String teste;
 
     private PrintWriter out;
     private BufferedReader in;
