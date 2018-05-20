@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="br.com.quartorodolfo.roomx.activity.SettingActivity"
+    android:background="#ffffff">
+
+    <include android:id="@+id/tbConfiguracoes"
+        layout="@layout/toolbar"></include>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Configurar"
+        android:id="@+id/btnConfigID"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:theme="@style/botaoComFundoBranco" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtIPID"
+        android:layout_above="@+id/txtPortaID"
+        android:layout_centerHorizontal="true"
+        android:textColor="#000000"
+        android:hint="Informe o IP"
+        android:textColorHint="#000000"
+        android:inputType="number" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtPortaID"
+        android:layout_above="@+id/btnConfigID"
+        android:layout_centerHorizontal="true"
+        android:textColor="#000000"
+        android:inputType="number"
+        android:hint="Informe a porta"
+        android:textColorHint="#000000"/>
+
+</RelativeLayout>
