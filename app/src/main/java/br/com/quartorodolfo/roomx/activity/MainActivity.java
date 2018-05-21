@@ -165,7 +165,9 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }finally{
             try{
-                soc.close();
+                if(soc!=null){
+                    soc.close();
+                }
             }catch (IOException e)
             {
                 //aTcp.onExceptionOcorred(e.getMessage());
@@ -184,9 +186,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    Socket soc = new Socket(ipArduino, Integer.parseInt(portaArduino));
+                    Socket soc1 = new Socket(ipArduino, Integer.parseInt(portaArduino));
                     //dados enviados para o servidor
-                    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(soc.getOutputStream()));
+                    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(soc1.getOutputStream()));
                     bw.write(codigoLamp);
                     bw.flush();
                     bw.close();
