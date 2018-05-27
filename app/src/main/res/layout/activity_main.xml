@@ -14,13 +14,21 @@
         android:background="@color/colorPrimary"
         android:layout_alignParentTop="true">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textSize="25sp"
             android:text="RoomX"
             android:id="@+id/txtCabecalho"
             android:textColor="#ffffff"
-            android:padding="16dp" />
+            android:padding="16dp"
+            android:layout_weight="1" />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/btnSettingID"
+            android:src="@drawable/ic_action_settings"
+            android:theme="@style/botaoMenu"
+            android:layout_weight="0" />
     </LinearLayout>
 
     <RelativeLayout
@@ -30,99 +38,87 @@
         android:layout_below="@id/ll_menucabecalho"
         android:id="@+id/relativeLayout">
 
-        <ImageButton
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView"
+                    android:src="@drawable/big_mattress" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnLampQtRodolfoID"
+                    android:src="@drawable/lamp"
+                    android:theme="@style/botaoComFundoBranco"
+                    android:layout_below="@+id/textView" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnTomadaID"
+                    android:src="@drawable/tomada"
+                    android:theme="@style/botaoComFundoBranco"
+                    android:layout_alignTop="@+id/btnLampQtRodolfoID"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnTempID"
+                    android:src="@drawable/thermometer"
+                    android:theme="@style/botaoComFundoBranco"
+                    android:layout_below="@+id/btnTomadaID"
+                    android:layout_centerHorizontal="true" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp">
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView2"
+                    android:src="@drawable/garage" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnGaragemID"
+                    android:src="@drawable/lamp"
+                    android:theme="@style/botaoComFundoBranco"
+                    android:layout_below="@+id/textView2"
+                    android:layout_centerHorizontal="true" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btnSettingID"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Developed by Rodolfo Moraes"
+            android:id="@+id/textView3"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/ic_settings"
-            android:theme="@style/botaoComFundoBranco" />
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnLampQtRodolfoID"
-            android:src="@drawable/lamp"
-            android:theme="@style/botaoComFundoBranco"
-            android:layout_below="@+id/textView" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Quarto Rodolfo"
-            android:id="@+id/textView"
-            android:textColor="@color/abc_input_method_navigation_guard" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Garagem"
-            android:id="@+id/textView2"
-            android:textColor="@color/abc_input_method_navigation_guard"
-            android:layout_marginLeft="15dp"
-            android:layout_marginStart="15dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignLeft="@+id/btnGaragemID"
-            android:layout_alignStart="@+id/btnGaragemID" />
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnGaragemID"
-            android:src="@drawable/lamp"
-            android:theme="@style/botaoComFundoBranco"
-            android:layout_below="@+id/textView2"
-            android:layout_centerHorizontal="true" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Tomada 1"
-            android:id="@+id/textView3"
-            android:textColor="@color/abc_input_method_navigation_guard"
-            android:layout_alignParentTop="true"
-            android:layout_alignLeft="@+id/btnTomadaID"
-            android:layout_alignStart="@+id/btnTomadaID"
-            android:layout_marginLeft="12dp"
-            android:layout_marginStart="12dp" />
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnTomadaID"
-            android:src="@drawable/tomada"
-            android:theme="@style/botaoComFundoBranco"
-            android:layout_alignTop="@+id/btnGaragemID"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="75dp"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/txtTemp"
-            android:textSize="75sp"
-            android:textIsSelectable="true"
-            android:textAlignment="center"
             android:textColor="#000000"
-            android:layout_marginTop="23dp"
-            android:layout_below="@+id/textView4"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Quarto Rodolfo"
-            android:id="@+id/textView4"
-            android:textColor="#000000"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true" />
+            android:textAlignment="center" />
 
     </RelativeLayout>
 

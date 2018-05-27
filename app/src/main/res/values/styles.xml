@@ -15,4 +15,10 @@
         <item name="colorControlHighlight">@color/botaoApertado</item>
     </style>
 
+    <style name="botaoMenu" parent="Theme.AppCompat.Light">
+        <item name="colorButtonNormal">@color/colorPrimary</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="colorControlHighlight">@color/botaoApertado</item>
+    </style>
+
 </resources>

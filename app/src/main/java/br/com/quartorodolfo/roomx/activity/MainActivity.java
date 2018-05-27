@@ -1,8 +1,10 @@
 package br.com.quartorodolfo.roomx.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,7 +40,8 @@ public class MainActivity extends AppCompatActivity {
     private String codigoLamp;
     private TextView txtTemperatura;
     private char[] vet;
-    private String teste;
+    private ImageButton btnTemp;
+    private AlertDialog.Builder dialog;
 
     private PrintWriter out;
     private BufferedReader in;
@@ -56,22 +59,21 @@ public class MainActivity extends AppCompatActivity {
         btnGaragem = (ImageButton) findViewById(R.id.btnGaragemID);
         btnSetting = (ImageButton) findViewById(R.id.btnSettingID);
         btnTomada = (ImageButton) findViewById(R.id.btnTomadaID);
-        txtTemperatura = (TextView) findViewById(R.id.txtTemp);
+        btnTemp = (ImageButton) findViewById(R.id.btnTempID);
+
 
         preferencias = new Preferencias(MainActivity.this);
         ipArduino = preferencias.getIP();
         portaArduino = preferencias.getPORTA();
 
-        TimerTask timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                leTemp();
-            }
-        };
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(timerTask, 0,1000);
-
-
+//        TimerTask timerTask = new TimerTask() {
+//            @Override
+//            public void run() {
+//                leTemp();
+//            }
+//        };
+//        Timer timer = new Timer();
+//        timer.scheduleAtFixedRate(timerTask, 0,1000);
 
         btnTomada.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,13 +124,39 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        btnTemp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimerTask timerTask = new TimerTask() {
+                    @Override
+                    public void run() {
+                        ipArduino = preferencias.getIP();
+                        portaArduino = preferencias.getPORTA();
+                        if(ipArduino == null || portaArduino == null){
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(MainActivity.this,"Conexão não configurada!",Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                        else{
+                            leTemp();
+                        }
+                    }
+                };
+                Timer timer = new Timer();
+                timer.schedule(timerTask,500);
+            }
+        });
     }
 
     private void leTemp(){
         Socket soc =null;
         mRun = true;
         try {
-            soc = new Socket("192.168.1.100", Integer.parseInt("5560"));
+            soc = new Socket(ipArduino, Integer.parseInt(portaArduino));
             //dados enviados para o servidor
             out = new PrintWriter(new BufferedWriter(
                     new OutputStreamWriter(soc.getOutputStream())), true);
@@ -142,7 +170,8 @@ public class MainActivity extends AppCompatActivity {
             {
                 vet = new char[6];
                 in.read(vet);
-                sResult = Character.toString(vet[0]) + Character.toString(vet[1]) +Character.toString(vet[2])+ Character.toString(vet[3])+ Character.toString(vet[4]) +Character.toString(vet[5]);
+                sResult = Character.toString(vet[0]) + Character.toString(vet[1]) +Character.toString(vet[2]);
+
                 if (sResult != null)
                 {
 
@@ -150,10 +179,21 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             //escreveTemp(sResult);
-                            txtTemperatura.setText(sResult + "°C");
+                            dialog = new AlertDialog.Builder(MainActivity.this);
+                            dialog.setTitle("Temperatura");
+                            dialog.setMessage(sResult + "°C");
+                            dialog.setCancelable(false);
+                            dialog.setIcon(R.drawable.ic_action_temperature);
+                            dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dialog.create();
+                            dialog.show();
                         }
                     });
-
                     mRun = false;
                 }
             }
